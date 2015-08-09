@@ -1,17 +1,23 @@
 package com.api.tweet;
 
-import twitter4j.Twitter;
-import twitter4j.TwitterFactory;
+import twitter4j.TwitterException;
 
-/**
- * Hello world!
- *
- */
+
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args ) throws TwitterException
     {
-    	Twitter twitter = new TwitterFactory().getInstance();
+    	 try {
+	    	TwitterApi api = new TwitterApi();
+	    	api.postMessage("Post Message using Twitter4J");
+	    	api.getMyTimeline();
+	    	api.getAccountSettings();
+	    	api.deleteMyLastStatus();
+	    	
+    	 }catch (TwitterException ex){
+    		 ex.printStackTrace();
+    		 System.out.println("Something is going wrong " + ex.getMessage());
+    	 }
     	
     }
 }
